@@ -1,5 +1,6 @@
 package view;
 
+
 import javax.swing.ButtonGroup;
 import javax.swing.JToolBar;
 
@@ -10,7 +11,12 @@ public class TaskBar extends JToolBar{
 	
 	private ButtonGroup buttonGroup;
 	
-	private TaskButton taskButtons[]={
+	private TaskButton taskButtons[];
+	private void setTask(){
+		parent.getEditorView();
+	}
+	private void setComponents() {
+		taskButtons=new TaskButton[]{
 			new TaskButton("Select"){
 				{
 					setTask();
@@ -31,11 +37,8 @@ public class TaskBar extends JToolBar{
 			new TaskButton("Use Case"){
 				
 			},
-	};
-	private void setTask(){
-		parent.getEditorView();
-	}
-	private void setComponents() {
+		};
+		
 		buttonGroup=new ButtonGroup();
 		
 		
@@ -44,6 +47,7 @@ public class TaskBar extends JToolBar{
 			add(taskButton);
 		}
 		buttonGroup.setSelected(taskButtons[0].getModel(), true);
+		
 		
 	}
 	public TaskBar(MainFrame parent){
