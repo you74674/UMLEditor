@@ -2,12 +2,11 @@ package view;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JFrame;
-
 import model.UMLeditor;
+import view.base.AncestorContainer;
 
-public class MainFrame extends JFrame{
-	
+public class MainFrame extends AncestorContainer{
+
 	private UMLeditor model;
 	
 	private MenuBar menuBar;
@@ -17,23 +16,25 @@ public class MainFrame extends JFrame{
 	private void setComponents(){
 		setLayout(new BorderLayout());
 		
+		editorView=new EditorView(this);
 		menuBar=new MenuBar(this);
 		taskBar=new TaskBar(this);
-		editorView=new EditorView();
-		
 		
 		setJMenuBar(menuBar);
 		add(taskBar, BorderLayout.WEST);
-		add(getEditorView(), BorderLayout.CENTER);
-		
+		add(editorView, BorderLayout.CENTER);
 	}
 	public MainFrame(UMLeditor model){
+		this.model=model;
+		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(Config.defaultFrameSize);
 		
 		setComponents();
 		
+		
 		setVisible(true);
+		
 	}
 	public UMLeditor getModel() {
 		return model;

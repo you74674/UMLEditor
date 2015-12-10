@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import model.uml.UML;
+
 public class FileManager {
 	
 	public void save(UML uml, String fileName){
@@ -25,7 +27,9 @@ public class FileManager {
 			UML uml=(UML) ois.readObject();
 			ois.close();
 			return uml;
-		} catch (IOException | ClassNotFoundException e) {
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return null;

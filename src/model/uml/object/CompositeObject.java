@@ -1,4 +1,4 @@
-package model.object;
+package model.uml.object;
 
 public class CompositeObject extends Object{
 	private Object[] objects;
@@ -8,6 +8,10 @@ public class CompositeObject extends Object{
 //			if(object.getLocation())
 //		}
 		this.setObjects(objects);
+	}
+
+	public CompositeObject() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Object[] getObjects() {

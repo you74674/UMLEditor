@@ -1,9 +1,10 @@
-package model.object;
+package model.uml.object;
 
+import java.awt.Point;
 
 public abstract class Object{
 	private String name;
-	private Coord location;
+	private Point location;
 	private Depth depth;
 
 	//name
@@ -15,10 +16,10 @@ public abstract class Object{
 	}	
 	
 	//location
-	public Coord getLocation() {
+	public Point getLocation() {
 		return location;
 	}
-	public void setLocation(Coord location) {
+	public void setLocation(Point location) {
 		this.location = location;
 	}
 

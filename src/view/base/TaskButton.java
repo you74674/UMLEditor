@@ -1,33 +1,26 @@
 package view.base;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.Icon;
-import javax.swing.JRadioButton;
-
+import javax.swing.JToggleButton;
 
 /**
  * to switch task
- *
+ * describe only the look!
  */
-public class TaskButton extends JRadioButton{
+public class TaskButton extends JToggleButton{
 	public TaskButton(){
 		super();
-		
-
 	}
 	public TaskButton(String name){
 		super(name);
+		setName(name);
 		setActionCommand(name);
-		addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				getParent().dispatchEvent(e);
-			}
-		});
 	}
 	public TaskButton(Icon icon){
 		super(icon);
+	}
+	
+	public String toString(){
+		return getName();
 	}
 }

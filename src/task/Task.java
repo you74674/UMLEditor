@@ -2,7 +2,6 @@ package task;
 
 import java.awt.event.MouseEvent;
 
-
 /*
  *on canvas
  * 		select:
@@ -47,7 +46,15 @@ import java.awt.event.MouseEvent;
  * */
 public abstract class Task {
 
-	abstract public void mouseClicked(MouseEvent e);
-	abstract public void mouseDragged(MouseEvent e);
+	abstract public void mousePressed(MouseEvent e);
 	abstract public void mouseReleased(MouseEvent e);
+	abstract public void mouseDragged(MouseEvent e);
+	
+	abstract public void pressedOnObject(MouseEvent e);
+	abstract public void releasedOnObject(MouseEvent e);
+	abstract public void draggedOnObject(MouseEvent e);
+	
+	abstract public void pressedOnCanvas(MouseEvent e);
+	abstract public void releasedOnCanvas(MouseEvent e);
+	abstract public void draggedOnCanvas(MouseEvent e);
 }

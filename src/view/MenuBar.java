@@ -7,7 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class MenuBar extends JMenuBar{
+public class MenuBar extends JMenuBar implements ActionListener{
 	private MainFrame parent;
 	
 	private JMenu fileMenu;
@@ -15,50 +15,25 @@ public class MenuBar extends JMenuBar{
 	
 	private void setFileMenu(){
 		fileMenu=new JMenu("File");
-		fileMenu.add(new JMenuItem("New file"){
-			{
-				addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						parent.getModel();
-					}
-				});
-			}			
-		});
-		fileMenu.add(new JMenuItem("Open"){
-			{
-				addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-//						JFileChooser fileChooser=new JFileChooser()
-					}
-				});
-			}
-		});
-		fileMenu.add(new JMenuItem("Save"){
-			{
-				addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						
-					}
-				});
-			}
-		});
-		add(fileMenu);		
+		fileMenu.add(new JMenuItem("New file"));
+		fileMenu.add(new JMenuItem("Open"));
+		fileMenu.add(new JMenuItem("Save"));
+		
+		for(int i=0; i<fileMenu.getItemCount(); i++)
+			fileMenu.getItem(i).addActionListener(this);
+		
+		add(fileMenu);
 	}
+	
 	private void setEditMenu(){
 		editMenu=new JMenu("edit");
-		editMenu.add(new JMenuItem("change object name"){
-			{
-				addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						
-					}
-				});
-			}
-		});
+		editMenu.add(new JMenuItem("change object name"));
+		editMenu.add(new JMenuItem("group"));
+		editMenu.add(new JMenuItem("ungroup"));
+
+		for(int i=0; i<fileMenu.getItemCount(); i++)
+			editMenu.getItem(i).addActionListener(this);
+		
 		add(editMenu);
 	}
 	private void setComponents(){
@@ -68,5 +43,10 @@ public class MenuBar extends JMenuBar{
 	public MenuBar(MainFrame parent){
 		this.parent=parent;
 		setComponents();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		parent.fireActionEvent(e);
 	}
 }

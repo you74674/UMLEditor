@@ -1,6 +1,8 @@
-package model.object;
+package model.uml.object;
 
 import java.util.ArrayList;
+
+import model.uml.line.ConnectionLine;
 
 /**
  * class, use case, ...
@@ -8,24 +10,35 @@ import java.util.ArrayList;
  */
 public class BasicObject extends Object{
 	private ArrayList<ConnectionLine> lines;
-	private int type;
+	private TYPE type;
 	
-	public static int CLASS_OBJECT=0;
-	public static int USECASE_OBJECT=1;
+	public static enum TYPE{CLASS, USECASE};
 	
 	public BasicObject(){
 		setLines(new ArrayList<ConnectionLine>());
 	}
+	public BasicObject(TYPE type){
+		this();
+		setType(type);
+	}
+	
+	//line
 	public ArrayList<ConnectionLine> getLines() {
 		return lines;
 	}
 	public void setLines(ArrayList<ConnectionLine> lines) {
 		this.lines = lines;
 	}
-	public int getType() {
+	public void addLine(ConnectionLine connectionLine) {
+		lines.add(connectionLine);
+	}
+	
+	//type
+	public TYPE getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(TYPE type) {
 		this.type = type;
 	}
+
 }
