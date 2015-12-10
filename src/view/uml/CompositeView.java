@@ -6,15 +6,10 @@ import java.awt.Graphics;
 import javax.swing.BorderFactory;
 
 import model.uml.object.CompositeObject;
-import view.listener.ObjectListener;
 
 public class CompositeView extends ObjectView{
 
 	public CompositeView(){
-		ObjectListener objectListener=new ObjectListener();
-		addMouseListener(objectListener);
-		addMouseMotionListener(objectListener);
-		
 		setOpaque(false);
 		setBackground(Color.WHITE);
 	}

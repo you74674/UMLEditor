@@ -5,15 +5,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Point;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.border.AbstractBorder;
 
 import model.uml.object.BasicObject;
 import view.Config;
-import view.listener.ObjectListener;
 import view.uml.ObjectView;
 import view.uml.line.LineView;
 
@@ -28,13 +25,6 @@ public abstract class BasicView extends ObjectView{
 		setSize(Config.objectSize);
 		setPreferredSize(Config.objectSize);
 		
-		ObjectListener objectListener=new ObjectListener();
-		addMouseListener(objectListener);
-		addMouseMotionListener(objectListener);
-//		for(MouseListener mouseListener: getMouseListeners())
-//			removeMouseListener(mouseListener);
-//		for(MouseMotionListener mouseMotionListener: getMouseMotionListeners())
-//			removeMouseMotionListener(mouseMotionListener);
 		outLines=new ArrayList<LineView>();
 		inLines=new ArrayList<LineView>();
 	}

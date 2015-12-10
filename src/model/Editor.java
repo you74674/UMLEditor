@@ -3,8 +3,6 @@ package model;
 import java.awt.Point;
 
 import model.uml.UML;
-import model.uml.line.ConnectionLine;
-import model.uml.object.BasicObject;
 import model.uml.object.CompositeObject;
 import model.uml.object.Object;
 
