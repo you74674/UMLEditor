@@ -44,17 +44,17 @@ import java.awt.event.MouseEvent;
  * 				no effect
  * 
  * */
-public abstract class Task {
+public class Task {
 
-	abstract public void mousePressed(MouseEvent e);
-	abstract public void mouseReleased(MouseEvent e);
-	abstract public void mouseDragged(MouseEvent e);
+	public void mousePressed(MouseEvent e){};
+	public void mouseReleased(MouseEvent e){};
+	public void mouseDragged(MouseEvent e){};
 	
-	abstract public void pressedOnObject(MouseEvent e);
-	abstract public void releasedOnObject(MouseEvent e);
-	abstract public void draggedOnObject(MouseEvent e);
+	public void pressedOnObject(MouseEvent e){};
+	public void releasedOnObject(MouseEvent e){};
+	public void draggedOnObject(MouseEvent e){};
 	
-	abstract public void pressedOnCanvas(MouseEvent e);
-	abstract public void releasedOnCanvas(MouseEvent e);
-	abstract public void draggedOnCanvas(MouseEvent e);
+	public void pressedOnCanvas(MouseEvent e){};
+	public void releasedOnCanvas(MouseEvent e){};
+	public void draggedOnCanvas(MouseEvent e){};
 }

@@ -27,11 +27,6 @@ public class SelectTask extends Task {
 
 	@Override
 	public void releasedOnCanvas(MouseEvent e) {
-		/*	drag and release:
-		 * 		select multiple object
-		 * 
-		 * */
-		
 		ArrayList<Component> tmp=new ArrayList<Component>();
 		EditorView editorView=(EditorView) e.getComponent();
 		editorView.remove(rec);
@@ -61,12 +56,6 @@ public class SelectTask extends Task {
 		((EditorView)e.getComponent()).add(rec);
 		((EditorView)e.getComponent()).repaint();
 	}
-	
-	
-	@Override
-	public void releasedOnObject(MouseEvent e) {
-
-	}
 
 	@Override
 	public void draggedOnObject(MouseEvent e) {
@@ -94,18 +83,4 @@ public class SelectTask extends Task {
 			
 		}
 	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

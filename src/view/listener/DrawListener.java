@@ -10,7 +10,6 @@ import view.EditorView;
 //listener as controller?
 public class DrawListener extends MouseInputAdapter{
 	private EditorView editorView;
-	private Task task;
 	
 	public DrawListener(EditorView editorView) {
 		this.editorView=editorView;
@@ -53,10 +52,6 @@ public class DrawListener extends MouseInputAdapter{
 
 	
 	public Task getTask() {
-		return task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
+		return editorView.getTask();
 	}
 }

@@ -1,4 +1,4 @@
-package model;
+package main;
 
 import javax.swing.SwingUtilities;
 
@@ -11,7 +11,7 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new MainFrame(new UMLeditor());
+				new MainFrame();
 			}
 		});
 	}

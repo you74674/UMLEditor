@@ -5,8 +5,6 @@ import java.awt.Graphics;
 
 import javax.swing.BorderFactory;
 
-import model.uml.object.CompositeObject;
-
 public class CompositeView extends ObjectView{
 
 	public CompositeView(){
@@ -14,10 +12,10 @@ public class CompositeView extends ObjectView{
 		setBackground(Color.WHITE);
 	}
 
-	@Override
-	public CompositeObject getObject(){
-		return (CompositeObject) super.getObject();
-	}
+//	@Override
+//	public CompositeObject getObject(){
+//		return (CompositeObject) super.getObject();
+//	}
 	
 	@Override
 	public void setSelected(boolean isSelected) {
