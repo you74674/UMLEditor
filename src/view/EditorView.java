@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +33,7 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 	private DrawListener drawListener;
 	private ObjectView[] selected;
 	
-	public void setComponents(){
+	private void setComponents(){
 		setLayout(null);
 		setBackground(Config.editorBackgroundColor);
 		
@@ -40,11 +41,9 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 	}
 	public EditorView(MainFrame parent){
 		super();
-		
+		//listen to event from parent
 		parent.addItemListener(this);
 		parent.addActionListener(this);
-
-//		editor=parent.getModel().getEditor();
 		
 		setComponents();
 		
@@ -56,7 +55,10 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		selected=new ObjectView[]{};
 	}
 	public void setTask(Task task){
+		if(this.task!=null)
+			this.task.exit(this);
 		this.task=task;
+		task.enter(this);
 	}
 	public Task getTask() {
 		return task;
@@ -65,12 +67,14 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 	public ObjectView[] getSelected() {
 		return selected;
 	}
-	public void setSelected(ObjectView[] selected) {
+	public void select(ObjectView[] selected) {
 		for(ObjectView objectView: this.selected)
 			objectView.setSelected(false);
 		this.selected = selected;
-		for(ObjectView objectView: selected)
+		for(ObjectView objectView: selected){
 			objectView.setSelected(true);
+			moveToFront(objectView);
+		}
 	}
 	public void changeName(ObjectView[] selected){
 		if(selected.length==1)
@@ -87,15 +91,15 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		if(selected.length>=2){
 			int minX=getWidth(), minY=getHeight(),
 				maxX=0, maxY=0;
-			CompositeView compositeView=new CompositeView();
-//			CompositeObject object=new CompositeObject();
-//			compositeView.setObject(object);
+			CompositeView compositeView=new CompositeView();;
+			
 			for(Component component: selected){
 				minX=Math.min(component.getX(), minX);
 				minY=Math.min(component.getY(), minY);
 				maxX=Math.max(component.getX()+component.getWidth(), maxX);
 				maxY=Math.max(component.getY()+component.getHeight(), maxY);
 			}
+			
 			compositeView.setLocation(minX, minY);
 			compositeView.setSize(maxX-minX, maxY-minY);
 			for(Component component: selected){
@@ -104,12 +108,11 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 				component.setLocation(component.getX()-minX, component.getY()-minY);
 				compositeView.add(component);
 			}
-//			compositeView.setVisible(true);
 			add(compositeView);
 			repaint();
 			compositeView.validate();
 			
-			setSelected(new ObjectView[]{compositeView});
+			select(new ObjectView[]{compositeView});
 		}
 	}
 	public void ungroup(ObjectView[] selected){
@@ -128,9 +131,8 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 	
 	//draw lines...no idea how to do.
 	@Override
-	public void paintComponent(java.awt.Graphics g) {
-		super.paintComponent(g);
-		
+	public void paint(Graphics g) {
+		super.paint(g);
 		Stack<Container> S=new Stack<Container>();
 		S.push(this);
 		for(Container container=S.pop(); ;container=S.pop()){
@@ -149,17 +151,15 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 			if(S.isEmpty())
 				break;
 		}
-	};
-
+	}
+	
 	//listen to task change
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		setSelected(new ObjectView[]{});
-		
-		task=new TaskFactory().getTask(e.getItem().toString());
+		setTask(new TaskFactory().getTask(e.getItem().toString()));
 	}
 	
-	//TODO: move to somewhere...
+	//listen to menu action
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().startsWith("change")){

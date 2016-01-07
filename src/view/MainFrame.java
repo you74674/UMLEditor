@@ -21,14 +21,13 @@ public class MainFrame extends AncestorContainer{
 		add(editorView, BorderLayout.CENTER);
 	}
 	public MainFrame(){
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(Config.defaultFrameSize);
 		
 		setComponents();
 		
 		
 		setVisible(true);
-		
 	}
 	public EditorView getEditorView() {
 		return editorView;

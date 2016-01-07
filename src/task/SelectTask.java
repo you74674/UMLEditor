@@ -5,9 +5,9 @@ import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 
 import view.EditorView;
 import view.uml.ObjectView;
@@ -37,7 +37,7 @@ public class SelectTask extends Task {
 		ObjectView selected[]=tmp.toArray(new ObjectView[tmp.size()]);
 		
 
-		editorView.setSelected(selected);
+		editorView.select(selected);
 		
 		last=null;
 		
@@ -68,19 +68,16 @@ public class SelectTask extends Task {
 	@Override
 	public void pressedOnObject(MouseEvent e) {
 		last=e.getPoint();
-		((EditorView)e.getComponent().getParent()).setSelected(new ObjectView[]{(ObjectView) e.getComponent()});
+		((EditorView)e.getComponent().getParent()).select(new ObjectView[]{(ObjectView) e.getComponent()});
 		((ObjectView) e.getComponent()).setSelected(true);
 		
 		e.setSource(e.getComponent().getParent());
 		e.getComponent().getParent().dispatchEvent(e);
 	}
-
+	
 	@Override
-	public void mousePressed(MouseEvent e) {
-		Component source=e.getComponent();
-		Component topComponent=SwingUtilities.getDeepestComponentAt(e.getComponent(), e.getX(), e.getY());
-		if(source==topComponent){//editorView
-			
-		}
+	public void exit(EditorView editorView) {
+		super.exit(editorView);
+		editorView.select(new ObjectView[]{});
 	}
 }

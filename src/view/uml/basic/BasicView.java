@@ -1,13 +1,8 @@
 package view.uml.basic;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.Point;
 import java.util.ArrayList;
-
-import javax.swing.border.AbstractBorder;
 
 import view.Config;
 import view.uml.ObjectView;
@@ -57,17 +52,6 @@ public abstract class BasicView extends ObjectView{
 		return ports;
 	}
 	
-	@Override
-	public void paint(Graphics g) {
-		g.setClip(-10, -10, getWidth()+20, getHeight()+20);
-		super.paint(g);
-	}
-	@Override
-	public void paintComponents(Graphics g) {
-//		g.setClip(-10, -10, getWidth()+20, getHeight()+20);
-		super.paintComponents(g);
-	}
-
 	//view
 	@Override
 	public void setSelected(boolean isSelect){
@@ -79,6 +63,19 @@ public abstract class BasicView extends ObjectView{
 	}
 
 	
+	
+	@Override
+	public void paint(Graphics g) {
+		g.setClip(-10, -10, getWidth()+20, getHeight()+20);
+		super.paint(g);
+	}
+	@Override
+	public void paintComponents(Graphics g) {
+//		g.setClip(-10, -10, getWidth()+20, getHeight()+20);
+		super.paintComponents(g);
+	}
+
+
 //	class PortBorder extends AbstractBorder{
 //		private final Dimension portSize=Config.portSize;
 //		@Override

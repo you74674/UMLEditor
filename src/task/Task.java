@@ -2,6 +2,8 @@ package task;
 
 import java.awt.event.MouseEvent;
 
+import view.EditorView;
+
 /*
  *on canvas
  * 		select:
@@ -57,4 +59,6 @@ public class Task {
 	public void pressedOnCanvas(MouseEvent e){};
 	public void releasedOnCanvas(MouseEvent e){};
 	public void draggedOnCanvas(MouseEvent e){};
+	public void exit(EditorView editorView){};
+	public void enter(EditorView editorView){};
 }

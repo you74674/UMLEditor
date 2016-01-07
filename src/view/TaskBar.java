@@ -4,9 +4,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
-
-import view.base.TaskButton;
 
 public class TaskBar extends JToolBar implements ItemListener{
 	private MainFrame parent;
@@ -44,6 +43,25 @@ public class TaskBar extends JToolBar implements ItemListener{
 	public void itemStateChanged(ItemEvent e) {
 		if(e.getStateChange()==ItemEvent.SELECTED){
 			parent.fireItemEvent(e);
+		}
+	}
+	
+	
+	private class TaskButton extends JToggleButton{
+//		public TaskButton(){
+//			super();
+//		}
+		public TaskButton(String name){
+			super(name);
+			setName(name);
+			setActionCommand(name);
+		}
+//		public TaskButton(Icon icon){
+//			super(icon);
+//		}
+		
+		public String toString(){
+			return getName();
 		}
 	}
 }

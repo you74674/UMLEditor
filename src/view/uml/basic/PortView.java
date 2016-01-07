@@ -9,7 +9,7 @@ import view.uml.ObjectView;
 import view.uml.line.LineView;
 
 public class PortView extends ObjectView{
-	private ArrayList<LineView> lineViews;//out lines only?
+	private ArrayList<LineView> lineViews;
 	
 	public PortView() {
 		setSize(Config.portSize);
