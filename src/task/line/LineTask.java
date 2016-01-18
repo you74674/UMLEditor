@@ -17,22 +17,29 @@ public abstract class LineTask extends Task {
 
 	@Override
 	public void releasedOnObject(MouseEvent e) {
-		if(e.getComponent() instanceof BasicView){
+		if(e.getComponent() instanceof BasicView){//from BasicView
 			EditorView editorView=(EditorView)e.getComponent().getParent();
 	
 			//get the other objectView
 			Point p=new Point(e.getPoint());//according to "from"
 			lastPoint.translate(lastComponent.getX(), lastComponent.getY());
 			p.translate(lastComponent.getX(), lastComponent.getY());//according to editorView
-			Component component=editorView.getComponentAt(p);
-			if(component instanceof BasicView){
-				BasicView from=(BasicView) lastComponent;
+			Component component=editorView.findComponentAt(p);
+			if(component instanceof BasicView){//to BasicView
+				BasicView from=(BasicView) e.getComponent();
 				BasicView to=(BasicView) component;
 				
 				//view
 				LineView lineView=getView();
 				lineView.connect(from.getPort(lastPoint), to.getPort(p));
+				from.addComponentListener(lineView);
+				to.addComponentListener(lineView);
+				lineView.setLocation(Math.min(lineView.getFrom().getCenter().x, lineView.getTo().getCenter().x), 
+										Math.min(lineView.getFrom().getCenter().y, lineView.getTo().getCenter().y));
+				lineView.setSize(Math.abs(lineView.getFrom().getCenter().x-lineView.getTo().getCenter().x), 
+										Math.abs(lineView.getFrom().getCenter().y-lineView.getTo().getCenter().y));
 				
+				editorView.add(lineView);
 				editorView.repaint();
 			}
 		}

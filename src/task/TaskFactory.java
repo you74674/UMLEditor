@@ -7,7 +7,7 @@ import task.line.CompositionTask;
 import task.line.GeneralizationTask;
 
 public class TaskFactory {
-	public Task getTask(String taskName){
+	public static Task getTask(String taskName){
 		if(taskName.startsWith("Select"))
 			return new SelectTask();
 		else if(taskName.startsWith("Association"))

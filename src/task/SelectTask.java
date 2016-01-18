@@ -27,20 +27,26 @@ public class SelectTask extends Task {
 
 	@Override
 	public void releasedOnCanvas(MouseEvent e) {
-		ArrayList<Component> tmp=new ArrayList<Component>();
 		EditorView editorView=(EditorView) e.getComponent();
-		editorView.remove(rec);
+
+		//remove rec to clear editor view
+		editorView.remove(rec);		
+		
+		//add object in rec into selected
+		ArrayList<Component> tmp=new ArrayList<Component>();
 		for(Component component: editorView.getComponents())
 			if(component instanceof ObjectView)
 				if(rec.getBounds().contains(component.getBounds()))
 					tmp.add(component);
 		ObjectView selected[]=tmp.toArray(new ObjectView[tmp.size()]);
 		
-
+		//select
 		editorView.select(selected);
 		
+		//clear last pressed
 		last=null;
 		
+		//update
 		editorView.repaint();
 	}
 
@@ -63,16 +69,16 @@ public class SelectTask extends Task {
 		Point point=e.getPoint();
 		point.translate(component.getX()-last.x, component.getY()-last.y);
 		component.setLocation(point);
+		component.getParent().repaint();
 	}
 
 	@Override
 	public void pressedOnObject(MouseEvent e) {
 		last=e.getPoint();
+		//set select
 		((EditorView)e.getComponent().getParent()).select(new ObjectView[]{(ObjectView) e.getComponent()});
 		((ObjectView) e.getComponent()).setSelected(true);
-		
-		e.setSource(e.getComponent().getParent());
-		e.getComponent().getParent().dispatchEvent(e);
+		e.getComponent().getParent().repaint();
 	}
 	
 	@Override

@@ -1,15 +1,10 @@
 package view;
 
 import java.awt.Component;
-import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Stack;
-
 import javax.swing.JOptionPane;
 
 import task.Task;
@@ -19,8 +14,6 @@ import view.listener.DrawListener;
 import view.uml.CompositeView;
 import view.uml.ObjectView;
 import view.uml.basic.BasicView;
-import view.uml.basic.PortView;
-import view.uml.line.LineView;
 
 
 /**
@@ -54,6 +47,8 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		
 		selected=new ObjectView[]{};
 	}
+	
+	//task
 	public void setTask(Task task){
 		if(this.task!=null)
 			this.task.exit(this);
@@ -64,6 +59,7 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		return task;
 	}
 	
+	//select
 	public ObjectView[] getSelected() {
 		return selected;
 	}
@@ -75,7 +71,10 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 			objectView.setSelected(true);
 			moveToFront(objectView);
 		}
+		repaint();
 	}
+	
+	//name
 	public void changeName(ObjectView[] selected){
 		if(selected.length==1)
 			if(selected[0] instanceof BasicView){
@@ -86,6 +85,8 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 				}
 			}
 	}
+	
+	//group
 	public void group(ObjectView[] selected){
 		//make group!
 		if(selected.length>=2){
@@ -129,34 +130,10 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		}
 	}	
 	
-	//draw lines...no idea how to do.
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-		Stack<Container> S=new Stack<Container>();
-		S.push(this);
-		for(Container container=S.pop(); ;container=S.pop()){
-			for(Component component: container.getComponents()){
-				if(component instanceof BasicView){
-					for(PortView portView: ((BasicView)component).getPorts()){
-						for(LineView lineView: portView.getLineViews()){
-							Point fromPoint=portView.getAbsoluteLocation();
-							Point toPoint=lineView.getTo().getAbsoluteLocation();
-							g.drawLine(fromPoint.x+5, fromPoint.y+5, toPoint.x+5, toPoint.y+5);
-						}
-					}
-				}else if(component instanceof CompositeView)
-					S.push((Container) component);
-			}
-			if(S.isEmpty())
-				break;
-		}
-	}
-	
 	//listen to task change
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		setTask(new TaskFactory().getTask(e.getItem().toString()));
+		setTask(TaskFactory.getTask(e.getItem().toString()));
 	}
 	
 	//listen to menu action

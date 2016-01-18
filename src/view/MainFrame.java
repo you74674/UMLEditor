@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-
 import view.base.AncestorContainer;
 
 public class MainFrame extends AncestorContainer{
@@ -25,7 +24,6 @@ public class MainFrame extends AncestorContainer{
 		setSize(Config.defaultFrameSize);
 		
 		setComponents();
-		
 		
 		setVisible(true);
 	}
