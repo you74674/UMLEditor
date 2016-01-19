@@ -10,76 +10,12 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 
+import view.Config;
 import view.uml.ObjectView;
 
 public class SelectTask extends Task {
 	public JComponent rec;
 	public Point last;
-	
-	//draw select rectangle
-	@Override
-	public void draggedOnCanvas(MouseEvent e) {
-		Rectangle rectangle=new Rectangle(e.getPoint());
-		rectangle.add(last);
-		rec.setBounds(rectangle);
-		editorView.repaint();
-	}
-
-	@Override
-	public void releasedOnCanvas(MouseEvent e) {
-//		EditorView editorView=(EditorView) e.getComponent();
-
-		//remove rec to clear editor view
-		editorView.remove(rec);		
-		
-		//add object in rec into selected
-		ArrayList<Component> selectedList=new ArrayList<Component>();
-		for(Component component: editorView.getComponents()){
-			if(component instanceof ObjectView)
-				if(rec.getBounds().contains(component.getBounds()))
-					selectedList.add(component);
-		}
-		ObjectView selected[]=selectedList.toArray(new ObjectView[selectedList.size()]);
-		
-		//select
-		editorView.select(selected);
-		
-		//clear last pressed
-		last=null;
-		
-		//update
-		editorView.repaint();
-	}
-
-	@Override
-	public void pressedOnCanvas(MouseEvent e) {
-		last=e.getPoint();
-		rec=new JComponent() {
-			{
-				setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			}
-		};
-		editorView.add(rec);
-		editorView.repaint();
-	}
-
-	@Override
-	public void draggedOnObject(MouseEvent e) {
-		ObjectView objectView=(ObjectView)e.getComponent();
-		Point point=e.getPoint();
-		point.translate(objectView.getX()-last.x, objectView.getY()-last.y);
-		objectView.drag(point);
-		objectView.getParent().repaint();
-	}
-
-	@Override
-	public void pressedOnObject(MouseEvent e) {
-		last=e.getPoint();
-		//set select
-		editorView.select(new ObjectView[]{(ObjectView) e.getComponent()});
-		((ObjectView) e.getComponent()).setSelected(true);
-		e.getComponent().getParent().repaint();
-	}
 	
 	@Override
 	public void exit() {
@@ -113,7 +49,7 @@ public class SelectTask extends Task {
 			
 			//add object in rec into selected
 			ArrayList<Component> selectedList=new ArrayList<Component>();
-			for(Component component: editorView.getComponents()){
+			for(Component component: editorView.getComponentsInLayer(Config.objectLayer)){
 				if(component instanceof ObjectView)
 					if(rec.getBounds().contains(component.getBounds()))
 						selectedList.add(component);

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +48,6 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		
 		selected=new ObjectView[]{};
 	}
-	
 	
 	//task
 	public void setTask(Task task){
@@ -102,15 +102,15 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 			
 			//setBounds
 			Rectangle rectangle=new Rectangle(-1, -1);//(-1, -1) for non-existent
-			for(Component component: selected)
-				rectangle.add(component.getBounds());
+			for(ObjectView objectView: selected)
+				rectangle.add(objectView.getBounds());
 			compositeView.setBounds(rectangle);
 
 			//add components
-			for(Component component: selected){
-				remove(component);
-				component.setLocation(component.getX()-compositeView.getX(), component.getY()-compositeView.getY());
-				compositeView.add(component);
+			for(ObjectView objectView: selected){
+				remove(objectView);
+				objectView.setLocation(objectView.getX()-compositeView.getX(), objectView.getY()-compositeView.getY());
+				compositeView.add(objectView);
 			}
 			compositeView.repaint();
 			
@@ -123,9 +123,21 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		}
 	}
 	public void ungroup(ObjectView[] selected){
-		for(ObjectView objectView: selected)
-			objectView.ungroup();
+		for(ObjectView objectView: selected){
+			for(Component component: objectView.getComponents()){
+				component.setLocation(component.getX()+objectView.getX(), component.getY()+objectView.getY());
+				objectView.remove(component);
+				add(component);
+			}
+			remove(objectView);
+		}
 	}	
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawString(getLocation().toString(), 0, 10);
+	}
 	
 	//listen to task change
 	@Override

@@ -47,7 +47,7 @@ import view.EditorView;
  * 
  * */
 public abstract class Task {
-
+	
 	protected EditorView editorView;
 	
 	public void setEditorView(EditorView editorView) {

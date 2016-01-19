@@ -10,18 +10,10 @@ public abstract class BasicTask extends Task {
 //	public abstract BasicObject getObject();
 	public abstract BasicView getView();
 	
-	//add new object
-	@Override
-	public void releasedOnCanvas(MouseEvent e) {
-		BasicView basicView=getView();
-		basicView.setLocation(e.getPoint());
-		
-		editorView.add(basicView);
-		editorView.repaint();
-	}
-
+	
 	public void mousePressed(MouseEvent e){
 	}
+	//add new object
 	public void mouseReleased(MouseEvent e){
 		if(e.getComponent()==editorView){
 			BasicView basicView=getView();

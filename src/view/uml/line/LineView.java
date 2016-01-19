@@ -3,11 +3,13 @@ package view.uml.line;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
+import view.Config;
 import view.uml.ObjectView;
 import view.uml.basic.PortView;
 
-public abstract class LineView extends ObjectView{
+public abstract class LineView extends ObjectView implements ComponentListener{
 	private PortView from, to;
 	
 	public LineView() {
@@ -26,8 +28,11 @@ public abstract class LineView extends ObjectView{
 	public void connect(PortView from, PortView to) {
 		this.from=from;
 		this.to=to;
+		from.addComponentListener(this);
+		to.addComponentListener(this);
 		from.addLine(this);
 		to.addLine(this);
+		resetBound();
 	}
 	public void resetBound(){
 		setLocation(Math.min(from.getCenter().x, to.getCenter().x), Math.min(from.getCenter().y, to.getCenter().y));
@@ -52,7 +57,7 @@ public abstract class LineView extends ObjectView{
 	}
 	@Override
 	public int getLayer() {
-		return 100;
+		return Config.lineLayer;
 	}
 	
 	

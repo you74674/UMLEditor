@@ -2,10 +2,12 @@ package view.uml;
 
 import java.awt.Component;
 import java.awt.Point;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import javax.swing.JPanel;
 
+import view.Config;
 import view.listener.ObjectListener;
 import view.uml.basic.PortView;
 
@@ -15,6 +17,7 @@ public abstract class ObjectView extends JPanel implements ComponentListener{
 	
 	public ObjectView(){
 		setLayout(null);
+//		setOpaque(true);
 		ObjectListener objectListener=new ObjectListener();
 		addMouseListener(objectListener);
 		addMouseMotionListener(objectListener);
@@ -30,10 +33,7 @@ public abstract class ObjectView extends JPanel implements ComponentListener{
 	public PortView getPort(Point lastPoint){
 		return null;
 	}
-	
-	public void ungroup(){
 
-	}
 	public void drag(Point point){
 		setLocation(point);
 	}
@@ -41,6 +41,26 @@ public abstract class ObjectView extends JPanel implements ComponentListener{
 	abstract public void setSelected(boolean isSelected);
 
 	public int getLayer() {
-		return 0;
+		return Config.objectLayer;
+	}
+	
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		processComponentEvent(e);
+	}
+	@Override
+	public void componentResized(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
