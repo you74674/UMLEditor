@@ -4,6 +4,7 @@ import view.uml.basic.UseCaseView;
 
 public class UseCaseTask extends BasicTask{
 
+	
 	@Override
 	public UseCaseView getView() {
 		UseCaseView useCaseView=new UseCaseView();

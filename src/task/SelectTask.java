@@ -3,42 +3,43 @@ package task;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 
-import view.EditorView;
 import view.uml.ObjectView;
 
 public class SelectTask extends Task {
 	public JComponent rec;
 	public Point last;
-
-
+	
 	//draw select rectangle
 	@Override
 	public void draggedOnCanvas(MouseEvent e) {
-		rec.setSize(Math.abs(e.getX()-last.x),Math.abs(e.getY()-last.y));
-		rec.setLocation(Math.min(e.getX(), last.x), Math.min(e.getY(), last.y));
-		((EditorView)e.getComponent()).repaint();
+		Rectangle rectangle=new Rectangle(e.getPoint());
+		rectangle.add(last);
+		rec.setBounds(rectangle);
+		editorView.repaint();
 	}
 
 	@Override
 	public void releasedOnCanvas(MouseEvent e) {
-		EditorView editorView=(EditorView) e.getComponent();
+//		EditorView editorView=(EditorView) e.getComponent();
 
 		//remove rec to clear editor view
 		editorView.remove(rec);		
 		
 		//add object in rec into selected
-		ArrayList<Component> tmp=new ArrayList<Component>();
-		for(Component component: editorView.getComponents())
+		ArrayList<Component> selectedList=new ArrayList<Component>();
+		for(Component component: editorView.getComponents()){
 			if(component instanceof ObjectView)
 				if(rec.getBounds().contains(component.getBounds()))
-					tmp.add(component);
-		ObjectView selected[]=tmp.toArray(new ObjectView[tmp.size()]);
+					selectedList.add(component);
+		}
+		ObjectView selected[]=selectedList.toArray(new ObjectView[selectedList.size()]);
 		
 		//select
 		editorView.select(selected);
@@ -55,35 +56,93 @@ public class SelectTask extends Task {
 		last=e.getPoint();
 		rec=new JComponent() {
 			{
-				setLocation(last);
 				setBorder(BorderFactory.createLineBorder(Color.BLACK));
 			}
 		};
-		((EditorView)e.getComponent()).add(rec);
-		((EditorView)e.getComponent()).repaint();
+		editorView.add(rec);
+		editorView.repaint();
 	}
 
 	@Override
 	public void draggedOnObject(MouseEvent e) {
-		Component component=e.getComponent();
+		ObjectView objectView=(ObjectView)e.getComponent();
 		Point point=e.getPoint();
-		point.translate(component.getX()-last.x, component.getY()-last.y);
-		component.setLocation(point);
-		component.getParent().repaint();
+		point.translate(objectView.getX()-last.x, objectView.getY()-last.y);
+		objectView.drag(point);
+		objectView.getParent().repaint();
 	}
 
 	@Override
 	public void pressedOnObject(MouseEvent e) {
 		last=e.getPoint();
 		//set select
-		((EditorView)e.getComponent().getParent()).select(new ObjectView[]{(ObjectView) e.getComponent()});
+		editorView.select(new ObjectView[]{(ObjectView) e.getComponent()});
 		((ObjectView) e.getComponent()).setSelected(true);
 		e.getComponent().getParent().repaint();
 	}
 	
 	@Override
-	public void exit(EditorView editorView) {
-		super.exit(editorView);
-		editorView.select(new ObjectView[]{});
+	public void exit() {
+		super.exit();
+		editorView.unselect();
+	}
+
+	public void mousePressed(MouseEvent e){
+		if(e.getComponent()==editorView){
+			last=e.getPoint();
+			rec=new JComponent() {
+				{
+					setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				}
+			};
+			editorView.add(rec);
+			editorView.repaint();
+		}
+		else{
+			last=e.getPoint();
+			//set select
+			editorView.select(new ObjectView[]{(ObjectView) e.getComponent()});
+			((ObjectView) e.getComponent()).setSelected(true);
+			e.getComponent().getParent().repaint();
+		}
+	}
+	public void mouseReleased(MouseEvent e){
+		if(e.getComponent()==editorView){
+			//remove rec to clear editor view
+			editorView.remove(rec);		
+			
+			//add object in rec into selected
+			ArrayList<Component> selectedList=new ArrayList<Component>();
+			for(Component component: editorView.getComponents()){
+				if(component instanceof ObjectView)
+					if(rec.getBounds().contains(component.getBounds()))
+						selectedList.add(component);
+			}
+			ObjectView selected[]=selectedList.toArray(new ObjectView[selectedList.size()]);
+			
+			//select
+			editorView.select(selected);
+			
+			//clear last pressed
+			last=null;
+			
+			//update
+			editorView.repaint();
+		}
+	}
+	public void mouseDragged(MouseEvent e){
+		if(e.getComponent()==editorView){
+			Rectangle rectangle=new Rectangle(e.getPoint());
+			rectangle.add(last);
+			rec.setBounds(rectangle);
+			editorView.repaint();
+		}
+		else{
+			ObjectView objectView=(ObjectView)e.getComponent();
+			Point point=e.getPoint();
+			point.translate(objectView.getX()-last.x, objectView.getY()-last.y);
+			objectView.drag(point);
+			objectView.getParent().repaint();
+		}
 	}
 }

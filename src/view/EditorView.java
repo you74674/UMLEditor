@@ -1,19 +1,19 @@
 package view;
 
 import java.awt.Component;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 import javax.swing.JOptionPane;
 
 import task.Task;
-import task.TaskFactory;
 import view.base.EditArea;
 import view.listener.DrawListener;
 import view.uml.CompositeView;
 import view.uml.ObjectView;
-import view.uml.basic.BasicView;
 
 
 /**
@@ -48,12 +48,13 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		selected=new ObjectView[]{};
 	}
 	
+	
 	//task
 	public void setTask(Task task){
 		if(this.task!=null)
-			this.task.exit(this);
+			this.task.exit();
 		this.task=task;
-		task.enter(this);
+		task.enter();
 	}
 	public Task getTask() {
 		return task;
@@ -64,90 +65,89 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		return selected;
 	}
 	public void select(ObjectView[] selected) {
-		for(ObjectView objectView: this.selected)
+		for(ObjectView objectView: this.selected){
 			objectView.setSelected(false);
+			setLayer(objectView, objectView.getLayer(), 0);
+		}
 		this.selected = selected;
 		for(ObjectView objectView: selected){
 			objectView.setSelected(true);
-			moveToFront(objectView);
+			setLayer(objectView, DRAG_LAYER);
 		}
 		repaint();
+	}
+	public void select(ObjectView selected){
+		select(new ObjectView[]{selected});
+	}
+	public void unselect(){
+		select(new ObjectView[]{});
 	}
 	
 	//name
 	public void changeName(ObjectView[] selected){
-		if(selected.length==1)
-			if(selected[0] instanceof BasicView){
-				String newName=JOptionPane.showInputDialog("Enter new name:");
-				if(newName!=null){
-					((BasicView)selected[0]).setName(newName);
-					selected[0].repaint();
-				}
+		if(selected.length==1){
+			String newName=JOptionPane.showInputDialog("Enter new name:");
+			if(newName!=null){
+				((ObjectView)selected[0]).setName(newName);
+				selected[0].repaint();
 			}
+		}
 	}
 	
 	//group
 	public void group(ObjectView[] selected){
-		//make group!
-		if(selected.length>=2){
-			int minX=getWidth(), minY=getHeight(),
-				maxX=0, maxY=0;
+		//don't make group with only one object
+		if(selected.length>1){
 			CompositeView compositeView=new CompositeView();;
 			
-			for(Component component: selected){
-				minX=Math.min(component.getX(), minX);
-				minY=Math.min(component.getY(), minY);
-				maxX=Math.max(component.getX()+component.getWidth(), maxX);
-				maxY=Math.max(component.getY()+component.getHeight(), maxY);
-			}
-			
-			compositeView.setLocation(minX, minY);
-			compositeView.setSize(maxX-minX, maxY-minY);
+			//setBounds
+			Rectangle rectangle=new Rectangle(-1, -1);//(-1, -1) for non-existent
+			for(Component component: selected)
+				rectangle.add(component.getBounds());
+			compositeView.setBounds(rectangle);
+
+			//add components
 			for(Component component: selected){
 				remove(component);
-				
-				component.setLocation(component.getX()-minX, component.getY()-minY);
+				component.setLocation(component.getX()-compositeView.getX(), component.getY()-compositeView.getY());
 				compositeView.add(component);
 			}
+			compositeView.repaint();
+			
+			//add to editorView
 			add(compositeView);
 			repaint();
-			compositeView.validate();
 			
-			select(new ObjectView[]{compositeView});
+			//select the group
+			select(compositeView);
 		}
 	}
 	public void ungroup(ObjectView[] selected){
-		for(ObjectView objectView: selected){
-			if(objectView instanceof CompositeView){
-				CompositeView compositeView=(CompositeView) objectView;
-				for(Component component: compositeView.getComponents()){
-					component.setLocation(component.getX()+compositeView.getX(), component.getY()+compositeView.getY());
-					compositeView.remove(component);
-					add(component);
-				}
-				remove(compositeView);
-			}
-		}
+		for(ObjectView objectView: selected)
+			objectView.ungroup();
 	}	
 	
 	//listen to task change
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		setTask(TaskFactory.getTask(e.getItem().toString()));
+		try {
+			Task task=(Task) Class.forName(e.getItem().toString()).newInstance();
+			task.setEditorView(this);
+			setTask(task);
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SecurityException e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 	//listen to menu action
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().startsWith("change")){
+		if(e.getActionCommand().startsWith("change"))
 			changeName(selected);
-		}
-		else if(e.getActionCommand().startsWith("group")){
+		else if(e.getActionCommand().startsWith("group"))
 			group(selected);
-		}
-		else if(e.getActionCommand().startsWith("ungroup")){
+		else if(e.getActionCommand().startsWith("ungroup"))
 			ungroup(selected);
-		}
 	}
 
 }

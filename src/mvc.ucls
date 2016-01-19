@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="task.Task" project="UMLeditor" file="/UMLeditor/src/task/Task.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="460" y="465"/>    
+    <position height="-1" width="-1" x="459" y="448"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="task.SelectTask" project="UMLeditor" file="/UMLeditor/src/task/SelectTask.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="429" y="749"/>    
+    <position height="-1" width="-1" x="423" y="734"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="view.uml.line.LineView" project="UMLeditor" 
     file="/UMLeditor/src/view/uml/line/LineView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1511" y="709"/>    
+    <position height="-1" width="-1" x="1788" y="713"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,265 +174,285 @@
   </class>  
   <class id="20" language="java" name="view.listener.DrawListener" project="UMLeditor" 
     file="/UMLeditor/src/view/listener/DrawListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="456" y="225"/>    
+    <position height="-1" width="-1" x="462" y="208"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="view.uml.basic.PortView" project="UMLeditor" 
-    file="/UMLeditor/src/view/uml/basic/PortView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1506" y="499"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <class id="22" language="java" name="view.uml.line.GeneralizationView" project="UMLeditor" 
+  <class id="21" language="java" name="view.uml.line.GeneralizationView" project="UMLeditor" 
     file="/UMLeditor/src/view/uml/line/GeneralizationView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1911" y="878"/>    
+    <position height="-1" width="-1" x="1993" y="911"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="view.uml.line.CompositionView" project="UMLeditor" 
+  <class id="22" language="java" name="view.uml.line.CompositionView" project="UMLeditor" 
     file="/UMLeditor/src/view/uml/line/CompositionView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1699" y="884"/>    
+    <position height="-1" width="-1" x="1776" y="919"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="view.uml.line.AssociationView" project="UMLeditor" 
+  <class id="23" language="java" name="view.uml.line.AssociationView" project="UMLeditor" 
     file="/UMLeditor/src/view/uml/line/AssociationView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1496" y="888"/>    
+    <position height="-1" width="-1" x="1587" y="911"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="view.uml.basic.PortView" project="UMLeditor" 
+    file="/UMLeditor/src/view/uml/basic/PortView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1496" y="711"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
   <association id="25">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="26" name="parent">        
-        <position height="0" width="0" x="546" y="-52"/>      
-      </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="0" width="0" x="546" y="-52"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="26" name="inLines"/>      
+      <multiplicity id="27" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="28">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="30">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="31" name="editorView">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="29">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="30" name="basicView"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="35">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="36" name="from"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="39" name="editorView">        
+        <position height="0" width="0" x="534" y="-92"/>      
       </attribute>      
-      <multiplicity id="32" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="534" y="-92"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="34">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="35">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="36">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="37" name="ports">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="38" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="40" name="from">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="42">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <association id="44">    
+  <association id="41">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="45" name="drawListener">        
-        <position height="0" width="0" x="6" y="9"/>      
+      <attribute id="42" name="task">        
+        <position height="0" width="0" x="-1" y="-17"/>      
       </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1">        
-        <position height="0" width="0" x="6" y="9"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="48" name="menuBar">        
-        <position height="0" width="0" x="83" y="-54"/>      
-      </attribute>      
-      <multiplicity id="49" minimum="0" maximum="1">        
-        <position height="0" width="0" x="83" y="-54"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <generalization id="51">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="52">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <generalization id="53">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="54">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="55" name="to">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="56" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="58" name="task">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="59" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1" y="-17"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="60">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <generalization id="61">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="19"/>  
-  </generalization>  
-  <generalization id="62">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="63">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="19"/>  
-  </generalization>  
-  <association id="64">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="65" name="parent">        
-        <position height="0" width="0" x="105" y="-41"/>      
-      </attribute>      
-      <multiplicity id="66" minimum="0" maximum="1">        
-        <position height="0" width="0" x="105" y="-41"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="67">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="19"/>  
-  </generalization>  
-  <generalization id="68">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <association id="69">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="70" name="editorView">        
-        <position height="0" width="0" x="534" y="-92"/>      
-      </attribute>      
-      <multiplicity id="71" minimum="0" maximum="1">        
-        <position height="0" width="0" x="534" y="-92"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="72">    
+  <association id="44">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="73" name="selected">        
+      <attribute id="45" name="selected">        
         <position height="0" width="0" x="-726" y="-331"/>      
       </attribute>      
-      <multiplicity id="74" minimum="0" maximum="2147483647">        
+      <multiplicity id="46" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="-726" y="-331"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="75">    
+  <association id="47">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="48" name="drawListener">        
+        <position height="0" width="0" x="12" y="-8"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="1">        
+        <position height="0" width="0" x="12" y="-8"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="54">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="55" name="to"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="58" name="parent">        
+        <position height="0" width="0" x="546" y="-52"/>      
+      </attribute>      
+      <multiplicity id="59" minimum="0" maximum="1">        
+        <position height="0" width="0" x="546" y="-52"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="76" name="taskBar">        
+      <attribute id="61" name="menuBar">        
+        <position height="0" width="0" x="83" y="-54"/>      
+      </attribute>      
+      <multiplicity id="62" minimum="0" maximum="1">        
+        <position height="0" width="0" x="83" y="-54"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <association id="64">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="65" name="editorView">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="66" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="67">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="68" name="ports"/>      
+      <multiplicity id="69" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="70">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="71" name="parent">        
+        <position height="0" width="0" x="105" y="-41"/>      
+      </attribute>      
+      <multiplicity id="72" minimum="0" maximum="1">        
+        <position height="0" width="0" x="105" y="-41"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="73">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="74" name="taskBar">        
         <position height="0" width="0" x="-10" y="-129"/>      
       </attribute>      
-      <multiplicity id="77" minimum="0" maximum="1">        
+      <multiplicity id="75" minimum="0" maximum="1">        
         <position height="0" width="0" x="-10" y="-129"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="78">    
+  <generalization id="76">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="77">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="78">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="79" name="editorView"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="81">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <dependency id="82">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <generalization id="83">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="84">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="85">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="11"/>  
   </generalization>  
+  <generalization id="86">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="87">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <association id="88">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="89" name="outLines"/>      
+      <multiplicity id="90" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

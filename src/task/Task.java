@@ -46,7 +46,14 @@ import view.EditorView;
  * 				no effect
  * 
  * */
-public class Task {
+public abstract class Task {
+
+	protected EditorView editorView;
+	
+	public void setEditorView(EditorView editorView) {
+		this.editorView = editorView;
+	};	
+	
 	public void pressedOnObject(MouseEvent e){};
 	public void releasedOnObject(MouseEvent e){};
 	public void draggedOnObject(MouseEvent e){};
@@ -55,9 +62,10 @@ public class Task {
 	public void releasedOnCanvas(MouseEvent e){};
 	public void draggedOnCanvas(MouseEvent e){};
 	
-	public void mousePressed(MouseEvent e){};
-	public void mouseReleased(MouseEvent e){};
-	public void mouseDragged(MouseEvent e){};
-	public void exit(EditorView editorView){};
-	public void enter(EditorView editorView){};
+	abstract public void mousePressed(MouseEvent e);
+	abstract public void mouseReleased(MouseEvent e);
+	abstract public void mouseDragged(MouseEvent e);
+	public void exit(){};
+	public void enter(){}
+
 }

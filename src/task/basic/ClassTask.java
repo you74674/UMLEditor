@@ -4,6 +4,7 @@ import view.uml.basic.ClassView;
 
 public class ClassTask extends BasicTask{
 	
+	
 	@Override
 	public ClassView getView() {
 		ClassView classView=new ClassView();

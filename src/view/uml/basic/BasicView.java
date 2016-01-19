@@ -3,6 +3,7 @@ package view.uml.basic;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 import view.Config;
@@ -50,15 +51,32 @@ public abstract class BasicView extends ObjectView{
 		return ports;
 	}
 	
+
 	@Override
 	public void setSelected(boolean isSelected){
 		for(PortView portView: ports)
 			portView.setSelected(isSelected);
 	}
 
+	
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		g.setClip(-10, -10, getWidth()+20, getHeight()+20);
 		super.paintComponent(g);
+	}
+	
+	@Override
+	public void componentHidden(ComponentEvent e) {
+	}
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		processComponentEvent(e);
+	}
+	@Override
+	public void componentResized(ComponentEvent e) {
+	}
+	@Override
+	public void componentShown(ComponentEvent e) {
 	}
 }

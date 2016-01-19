@@ -16,36 +16,39 @@ public class DrawListener extends MouseInputAdapter{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(e.getSource()==editorView){
-			System.out.println("pressed on canvas "+editorView.getTask().getClass().getSimpleName());
-			editorView.getTask().pressedOnCanvas(e);
-		}
-		else{
-			System.out.println("pressed on object "+editorView.getTask().getClass().getSimpleName());
-			editorView.getTask().pressedOnObject(e);
-		}
+//		if(e.getSource()==editorView){
+//			System.out.println("pressed on canvas "+editorView.getTask().getClass().getSimpleName());
+//			editorView.getTask().pressedOnCanvas(e);
+//		}
+//		else{
+//			System.out.println("pressed on object "+editorView.getTask().getClass().getSimpleName());
+//			editorView.getTask().pressedOnObject(e);
+//		}
+		editorView.getTask().mousePressed(e);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(e.getSource()==editorView){
-			System.out.println("released on canvas");
-			editorView.getTask().releasedOnCanvas(e);
-		}
-		else{
-			System.out.println("released on object");
-			editorView.getTask().releasedOnObject(e);
-		}
+//		if(e.getSource()==editorView){
+//			System.out.println("released on canvas");
+//			editorView.getTask().releasedOnCanvas(e);
+//		}
+//		else{
+//			System.out.println("released on object");
+//			editorView.getTask().releasedOnObject(e);
+//		}
+		editorView.getTask().mouseReleased(e);
 	}
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(e.getSource()==editorView){
-			System.out.println("dragged on canvas");
-			editorView.getTask().draggedOnCanvas(e);
-		}
-		else{
-			editorView.getTask().draggedOnObject(e);
-			System.out.println("dragged on object");
-		}
+//		if(e.getSource()==editorView){
+//			System.out.println("dragged on canvas");
+//			editorView.getTask().draggedOnCanvas(e);
+//		}
+//		else{
+//			editorView.getTask().draggedOnObject(e);
+//			System.out.println("dragged on object");
+//		}
+		editorView.getTask().mouseDragged(e);
 	}
 }

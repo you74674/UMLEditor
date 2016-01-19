@@ -4,16 +4,17 @@ import java.awt.Component;
 
 import javax.swing.JLayeredPane;
 
+import view.uml.ObjectView;
+
 public class EditArea extends JLayeredPane{
 	public EditArea(){
 		super();
 		setOpaque(true);
 	}
 	
-	@Override
-	public Component add(Component component){
-		super.add(component);
-		moveToFront(component);
-		return component;
+	public Component add(ObjectView objectView){
+		super.add(objectView);
+		setLayer(objectView, objectView.getLayer());
+		return objectView;
 	}
 }

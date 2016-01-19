@@ -7,6 +7,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 
+import task.SelectTask;
+import task.Task;
+import task.basic.ClassTask;
+import task.basic.UseCaseTask;
+import task.line.AssociationTask;
+import task.line.CompositionTask;
+import task.line.GeneralizationTask;
+
 public class TaskBar extends JToolBar implements ItemListener{
 	private MainFrame parent;
 	
@@ -15,12 +23,12 @@ public class TaskBar extends JToolBar implements ItemListener{
 	private TaskButton taskButtons[];
 	private void setComponents() {
 		taskButtons=new TaskButton[]{
-			new TaskButton("Select"),
-			new TaskButton("Association Line"),
-			new TaskButton("Generalization Line"),
-			new TaskButton("Composition Line"),
-			new TaskButton("Class"),
-			new TaskButton("Use Case"),
+			new TaskButton("Select", SelectTask.class),
+			new TaskButton("Association Line", AssociationTask.class),
+			new TaskButton("Generalization Line", GeneralizationTask.class),
+			new TaskButton("Composition Line", CompositionTask.class),
+			new TaskButton("Class",ClassTask.class),
+			new TaskButton("Use Case", UseCaseTask.class),
 		};
 		
 		buttonGroup=new ButtonGroup();
@@ -48,20 +56,14 @@ public class TaskBar extends JToolBar implements ItemListener{
 	
 	
 	private class TaskButton extends JToggleButton{
-//		public TaskButton(){
-//			super();
-//		}
-		public TaskButton(String name){
+		public TaskButton(String name, Class<? extends Task> taskClass){
 			super(name);
 			setName(name);
-			setActionCommand(name);
+			setActionCommand(taskClass.getName());
 		}
-//		public TaskButton(Icon icon){
-//			super(icon);
-//		}
 		
 		public String toString(){
-			return getName();
+			return getActionCommand();
 		}
 	}
 }

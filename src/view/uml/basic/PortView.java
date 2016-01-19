@@ -2,6 +2,7 @@ package view.uml.basic;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 import view.Config;
@@ -11,7 +12,7 @@ import view.uml.line.LineView;
 public class PortView extends ObjectView{
 //	private ArrayList<LineView> lineViews;
 	
-	private BasicView basicView;
+	private ObjectView basicView;
 	private ArrayList<LineView> inLines;
 	private ArrayList<LineView> outLines;
 
@@ -26,10 +27,10 @@ public class PortView extends ObjectView{
 	}
 	
 	//basicView
-	public BasicView getBasicView() {
+	public ObjectView getBasicView() {
 		return basicView;
 	}
-	public void setBasicView(BasicView basicView) {
+	public void setBasicView(ObjectView basicView) {
 		this.basicView = basicView;
 	}	
 	
@@ -59,10 +60,14 @@ public class PortView extends ObjectView{
 
 	public Point getCenter(){
 		Point point=getAbsoluteLocation();
+//		point.translate(getParent().getX(), getParent().getY());
 		point.translate(getWidth()/2, getHeight()/2);
 		return point;
 	}
-	
+	@Override
+	public void drag(Point point) {
+		//deal with bending line
+	}
 	
 	@Override
 	public void setSelected(boolean isSelected) {
@@ -70,4 +75,17 @@ public class PortView extends ObjectView{
 			setVisible(isSelected);
 	}
 
+	@Override
+	public void componentHidden(ComponentEvent e) {
+	}
+	@Override
+	public void componentMoved(ComponentEvent e) {
+//		resetBound();
+	}
+	@Override
+	public void componentResized(ComponentEvent e) {
+	}
+	@Override
+	public void componentShown(ComponentEvent e) {
+	}
 }

@@ -5,8 +5,8 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import task.Task;
-import view.EditorView;
-import view.uml.basic.BasicView;
+import view.uml.ObjectView;
+import view.uml.basic.PortView;
 import view.uml.line.LineView;
 
 public abstract class LineTask extends Task {
@@ -17,31 +17,38 @@ public abstract class LineTask extends Task {
 
 	@Override
 	public void releasedOnObject(MouseEvent e) {
-		if(e.getComponent() instanceof BasicView){//from BasicView
-			EditorView editorView=(EditorView)e.getComponent().getParent();
-	
-			//get the other objectView
-			Point p=new Point(e.getPoint());//according to "from"
-			lastPoint.translate(lastComponent.getX(), lastComponent.getY());
-			p.translate(lastComponent.getX(), lastComponent.getY());//according to editorView
-			Component component=editorView.findComponentAt(p);
-			if(component instanceof BasicView){//to BasicView
-				BasicView from=(BasicView) e.getComponent();
-				BasicView to=(BasicView) component;
-				
-				//view
-				LineView lineView=getView();
-				lineView.connect(from.getPort(lastPoint), to.getPort(p));
-				from.addComponentListener(lineView);
-				to.addComponentListener(lineView);
-				lineView.setLocation(Math.min(lineView.getFrom().getCenter().x, lineView.getTo().getCenter().x), 
-										Math.min(lineView.getFrom().getCenter().y, lineView.getTo().getCenter().y));
-				lineView.setSize(Math.abs(lineView.getFrom().getCenter().x-lineView.getTo().getCenter().x), 
-										Math.abs(lineView.getFrom().getCenter().y-lineView.getTo().getCenter().y));
-				
-				editorView.add(lineView);
-				editorView.repaint();
-			}
+//		EditorView editorView=(EditorView)e.getComponent().getParent();
+		
+		//adjust lastPoint
+		lastPoint.translate(lastComponent.getX(), lastComponent.getY());
+		
+		//adjust event point
+		Point p=new Point(e.getPoint());//according to "from"
+		p.translate(lastComponent.getX(), lastComponent.getY());//according to editorView
+		
+		//get objects
+		ObjectView from=(ObjectView) e.getComponent();
+		ObjectView to=null;
+		Component component=editorView.findComponentAt(p);
+		if(component!=editorView)
+			to=(ObjectView) component;
+		
+		//get ports
+		PortView fromPort=from.getPort(lastPoint);
+		PortView toPort=null;
+		if(to!=null)
+			toPort=to.getPort(p);
+		
+		//if ports exist, connect them
+		if(fromPort!=null && toPort!=null){
+			LineView lineView=getView();
+			lineView.connect(fromPort, toPort);
+			from.addComponentListener(lineView);
+			to.addComponentListener(lineView);
+			lineView.resetBound();
+			
+			editorView.add(lineView);
+			editorView.repaint();
 		}
 	}
 
@@ -51,4 +58,45 @@ public abstract class LineTask extends Task {
 		lastComponent=e.getComponent();
 	}
 
+	public void mousePressed(MouseEvent e){
+		lastPoint=e.getPoint();
+		lastComponent=e.getComponent();
+	}
+	public void mouseReleased(MouseEvent e){
+		if(e.getComponent()!=editorView){
+			//adjust lastPoint
+			lastPoint.translate(lastComponent.getX(), lastComponent.getY());
+			
+			//adjust event point
+			Point p=new Point(e.getPoint());//according to "from"
+			p.translate(lastComponent.getX(), lastComponent.getY());//according to editorView
+			
+			//get objects
+			ObjectView from=(ObjectView) e.getComponent();
+			ObjectView to=null;
+			Component component=editorView.findComponentAt(p);
+			if(component!=editorView)
+				to=(ObjectView) component;
+			
+			//get ports
+			PortView fromPort=from.getPort(lastPoint);
+			PortView toPort=null;
+			if(to!=null)
+				toPort=to.getPort(p);
+			
+			//if ports exist, connect them
+			if(fromPort!=null && toPort!=null){
+				LineView lineView=getView();
+				lineView.connect(fromPort, toPort);
+				from.addComponentListener(lineView);
+				to.addComponentListener(lineView);
+				lineView.resetBound();
+				
+				editorView.add(lineView);
+				editorView.repaint();
+			}
+		}
+	}
+	public void mouseDragged(MouseEvent e){}
+	
 }
