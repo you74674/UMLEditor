@@ -72,7 +72,7 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 		this.selected = selected;
 		for(ObjectView objectView: selected){
 			objectView.setSelected(true);
-			setLayer(objectView, DRAG_LAYER);
+			setLayer(objectView, Config.lineLayer, -1);
 		}
 		repaint();
 	}
@@ -142,13 +142,8 @@ public class EditorView extends EditArea implements ActionListener, ItemListener
 	//listen to task change
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		try {
-			Task task=(Task) Class.forName(e.getItem().toString()).newInstance();
-			task.setEditorView(this);
-			setTask(task);
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SecurityException e1) {
-			e1.printStackTrace();
-		}
+		setTask((Task) e.getSource());
+		task.setEditorView(this);
 	}
 	
 	//listen to menu action
