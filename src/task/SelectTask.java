@@ -49,11 +49,9 @@ public class SelectTask extends Task {
 			
 			//add object in rec into selected
 			ArrayList<Component> selectedList=new ArrayList<Component>();
-			for(Component component: editorView.getComponentsInLayer(Config.objectLayer)){
-				if(component instanceof ObjectView)
-					if(rec.getBounds().contains(component.getBounds()))
-						selectedList.add(component);
-			}
+			for(Component component: editorView.getComponentsInLayer(Config.objectLayer))
+				if(rec.getBounds().contains(component.getBounds()))
+					selectedList.add(component);
 			ObjectView selected[]=selectedList.toArray(new ObjectView[selectedList.size()]);
 			
 			//select

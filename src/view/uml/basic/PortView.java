@@ -28,6 +28,7 @@ public class PortView extends ObjectView{
 	//lines
 	public void addLine(LineView lineView){
 		lineViews.add(lineView);
+		addComponentListener(lineView);
 		setVisible(true);
 	}
 
@@ -36,6 +37,12 @@ public class PortView extends ObjectView{
 		point.translate(getWidth()/2, getHeight()/2);
 		return point;
 	}
+	
+	@Override
+	public boolean contains(int x, int y) {
+		return false;
+	}
+	
 	@Override
 	public void drag(Point point) {
 		//deal with change port position

@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-
 import view.Config;
 import view.uml.ObjectView;
 import view.uml.basic.PortView;
@@ -16,8 +15,11 @@ public abstract class LineView extends ObjectView implements ComponentListener{
 		setOpaque(false);
 		removeMouseListener(getMouseListeners()[0]);
 		removeMouseMotionListener(getMouseMotionListeners()[0]);
+		setEnabled(false);
 	}
-	
+	public void setFrom(PortView from){
+		this.from=from;
+	}
 	public PortView getFrom() {
 		return from;
 	}
@@ -28,8 +30,6 @@ public abstract class LineView extends ObjectView implements ComponentListener{
 	public void connect(PortView from, PortView to) {
 		this.from=from;
 		this.to=to;
-		from.addComponentListener(this);
-		to.addComponentListener(this);
 		from.addLine(this);
 		to.addLine(this);
 		resetBound();
@@ -40,12 +40,37 @@ public abstract class LineView extends ObjectView implements ComponentListener{
 	}
 	
 	@Override
+	public boolean contains(int x, int y) {
+//		if(from.getCenter().x<=to.getCenter().x==from.getCenter().y<=to.getCenter().y){
+//			double a=(to.getCenter().y-from.getCenter().y)/(to.getCenter().x-from.getCenter().x);
+//
+//			if(
+//			(x*(to.getCenter().y-from.getCenter().y)-y*(to.getCenter().x-from.getCenter().x))/
+//			Math.sqrt((to.getCenter().y-from.getCenter().y)*(to.getCenter().y-from.getCenter().y)+
+//			(to.getCenter().x-from.getCenter().x)*(to.getCenter().x-from.getCenter().x))
+//			<5
+//			)
+//				return true;
+//			else
+//				return false;
+//		
+//		}
+//		else
+//			;
+		return false;
+	}
+
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if(from.getCenter().x<=to.getCenter().x==from.getCenter().y<=to.getCenter().y)
-			g.drawLine(0, 0, getWidth()-1, getHeight()-1);
-		else
-			g.drawLine(0, getHeight()-1, getWidth()-1, 0);
+		Point fromPoint=from.getCenter();
+		fromPoint.translate(-getX(), -getY());
+		//{0, 0} -> {getWidth()-1, getHeight()-1}
+		//{0, getHeight()-1} -> {getWidth()-1, 0}
+		//{getWidth()-1, getHeight()-1} -> {0, 0}
+		//{getWidth()-1, 0} -> {0, getHeight()-1}
+		Point toPoint=new Point((fromPoint.x==0?getWidth()-1:0), (fromPoint.y==0?getHeight()-1:0));
+		g.drawLine(fromPoint.x, fromPoint.y, toPoint.x, toPoint.y);
 	}
 	@Override
 	public void setSelected(boolean isSelected) {
@@ -64,18 +89,7 @@ public abstract class LineView extends ObjectView implements ComponentListener{
 	
 	//component listener
 	@Override
-	public void componentHidden(ComponentEvent e) {
-	}
-	@Override
 	public void componentMoved(ComponentEvent e) {
 		resetBound();
 	}
-	@Override
-	public void componentResized(ComponentEvent e) {
-	}
-	@Override
-	public void componentShown(ComponentEvent e) {
-	}
-
-
 }

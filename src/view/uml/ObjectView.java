@@ -30,16 +30,20 @@ public abstract class ObjectView extends JPanel implements ComponentListener{
 		return p;
 	}
 
+	//default: no port
 	public PortView getPort(Point lastPoint){
 		return null;
 	}
-
+	//default: setLocation
 	public void drag(Point point){
 		setLocation(point);
 	}
 	
 	abstract public void setSelected(boolean isSelected);
-
+	public void ungroup(){
+		
+	}
+	
 	public int getLayer() {
 		return Config.objectLayer;
 	}

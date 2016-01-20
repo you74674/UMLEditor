@@ -7,7 +7,7 @@ import java.awt.Polygon;
 
 public class GeneralizationView extends LineView {
 
-	private final int UNIT=20;
+	private final int UNIT=10;
 	@Override 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -21,10 +21,12 @@ public class GeneralizationView extends LineView {
 
 
 		double theta=Math.atan2(to.y-from.y,to.x-from.x);
-		Polygon polygon=new Polygon(new int[]{to.x, (int) (to.x+UNIT*((to.x-10)*Math.cos(theta)-(to.y-10)*Math.sin(theta))+0.5),
-													(int) (to.x+UNIT*((to.x-10)*Math.cos(theta)-(to.y+10)*Math.sin(theta))+0.5)},
-									new int[]{to.y, (int) (to.y+UNIT*((to.x-10)*Math.sin(theta)+(to.y-10)*Math.cos(theta))+0.5),
-													(int) (to.y+UNIT*((to.x-10)*Math.sin(theta)+(to.y+10)*Math.cos(theta))+0.5)},
+		Polygon polygon=new Polygon(new int[]{to.x, to.x+(int)((-UNIT)*Math.cos(theta)-(UNIT)*Math.sin(theta)+0.5),
+													to.x+(int)((-UNIT)*Math.cos(theta)-(-UNIT)*Math.sin(theta)+0.5)
+													},
+									new int[]{to.y, to.y+(int)((-UNIT)*Math.sin(theta)+(UNIT)*Math.cos(theta)+0.5),
+													to.y+(int)((-UNIT)*Math.sin(theta)+(-UNIT)*Math.cos(theta)+0.5)
+													},
 									3);
 		
 		g.setColor(Color.WHITE);

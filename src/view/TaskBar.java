@@ -50,25 +50,15 @@ public class TaskBar extends JToolBar implements ItemListener{
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if(e.getStateChange()==ItemEvent.SELECTED){
-			e.setSource(((TaskButton)e.getItem()).getTask());
 			parent.fireItemEvent(e);
 		}
 	}
 	
 	
 	private class TaskButton extends JToggleButton{
-		private Task task;
 		public TaskButton(String name, Class<? extends Task> taskClass){
 			super(name);
-			try {
-				task=taskClass.newInstance();
-			} catch (InstantiationException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		public Task getTask(){
-			return task;
+			setActionCommand(taskClass.getName());
 		}
 		public String toString(){
 			return getActionCommand();

@@ -6,6 +6,8 @@ import java.awt.Point;
 import java.awt.Polygon;
 
 public class CompositionView extends LineView {
+	
+	private final int UNIT=10;
 	@Override 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -22,13 +24,19 @@ public class CompositionView extends LineView {
 		Point b=new Point(to);
 		b.translate(-10, -10);
 		
-		Polygon polygon=new Polygon(new int[]{to.x, a.x, to.x-20, b.x}, new int[]{to.y, a.y, to.y, b.y}, 4);
-//		double theta=Math.atan2(to.y-from.y, to.x-from.x);
-		
-
+		double theta=Math.atan2(to.y-from.y,to.x-from.x);
+		Polygon polygon=new Polygon(new int[]{to.x, to.x+(int)((-UNIT)*Math.cos(theta)-(UNIT)*Math.sin(theta)+0.5),
+													to.x+(int)((-2*UNIT)*Math.cos(theta)+0.5),
+													to.x+(int)((-UNIT)*Math.cos(theta)-(-UNIT)*Math.sin(theta)+0.5)
+													},
+									new int[]{to.y, to.y+(int)((-UNIT)*Math.sin(theta)+(UNIT)*Math.cos(theta)+0.5),
+													to.y+(int)((-2*UNIT)*Math.sin(theta)+0.5),
+													to.y+(int)((-UNIT)*Math.sin(theta)+(-UNIT)*Math.cos(theta)+0.5)
+													},
+									4);
 		
 		g.setColor(Color.WHITE);
-		g.fillPolygon(new int[]{to.x, a.x+1, to.x-20, b.x+1}, new int[]{to.y, a.y-1, to.y, b.y+1}, 4);
+		g.fillPolygon(polygon);
 		g.setColor(getForeground());
 		g.drawPolygon(polygon);
 	}

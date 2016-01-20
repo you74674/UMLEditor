@@ -12,5 +12,6 @@ public class Config {
 	
 	
 	public static final int objectLayer=0;
-	public static final int lineLayer=100;
+//	public static final int selectLayer=100;
+	public static final int lineLayer=200;
 }

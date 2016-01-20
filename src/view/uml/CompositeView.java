@@ -23,6 +23,17 @@ public class CompositeView extends ObjectView{
 				BorderFactory.createLineBorder(Color.BLACK):
 					BorderFactory.createDashedBorder(null));
 	}
+	
+	@Override
+	public void ungroup() {
+		for(Component component: getComponents()){
+			component.setLocation(component.getX()+getX(), component.getY()+getY());
+			remove(component);
+			getParent().add(component);
+		}
+		getParent().remove(this);
+	}
+	
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

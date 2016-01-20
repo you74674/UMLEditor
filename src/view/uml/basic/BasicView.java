@@ -10,7 +10,7 @@ import view.uml.ObjectView;
 
 public abstract class BasicView extends ObjectView{
 	private ArrayList<PortView> ports;
-	private	Point portsLocation[]=
+	private	static final Point portsLocation[]=
 			{
 				new Point(Config.objectSize.width/2-Config.portSize.width/2, -Config.portSize.height/2),
 				new Point(Config.objectSize.width/2-Config.portSize.width/2, Config.objectSize.height-Config.portSize.height/2),

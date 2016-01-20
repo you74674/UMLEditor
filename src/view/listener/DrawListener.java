@@ -24,7 +24,7 @@ public class DrawListener extends MouseInputAdapter{
 //			System.out.println("pressed on object "+editorView.getTask().getClass().getSimpleName());
 //			editorView.getTask().pressedOnObject(e);
 //		}
-		System.out.println("pressed at "+e.getPoint().toString());
+		System.out.println("pressed at "+e.getPoint().toString()+", "+e.getSource().getClass().getSimpleName());
 		editorView.getTask().mousePressed(e);
 	}
 
@@ -38,7 +38,7 @@ public class DrawListener extends MouseInputAdapter{
 //			System.out.println("released on object");
 //			editorView.getTask().releasedOnObject(e);
 //		}
-		System.out.println("released at "+e.getPoint().toString());
+		System.out.println("released at "+e.getPoint().toString()+", "+e.getSource().getClass().getSimpleName());
 		editorView.getTask().mouseReleased(e);
 	}
 	@Override
@@ -51,7 +51,7 @@ public class DrawListener extends MouseInputAdapter{
 //			editorView.getTask().draggedOnObject(e);
 //			System.out.println("dragged on object");
 //		}
-		System.out.println("dragged at "+e.getPoint().toString());
+		System.out.println("dragged at "+e.getPoint().toString()+", "+e.getSource().getClass().getSimpleName());
 		editorView.getTask().mouseDragged(e);
 	}
 }
